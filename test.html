@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ex Kubernetes WebApp</title>
+<style>
+    .box{
+        position: absolute;
+        top: 0%;
+        left: 25%;
+        color:black;
+        width: 50%;
+        background:url("37V7.gif");
+        padding: 0px;
+        text-align: center;
+        font-style: italic;
+        font-size: x-large;
+    }
+    
+    .box1{
+        position: absolute;
+        top: 90px;
+        left: 750%;
+        height: 550px;
+        color:whitesmoke;
+        width: 1000%;
+        background-color: black;
+        text-align: center;
+        font-style:normal;
+        font-size: x-large;
+        box-sizing: content-box;
+        align-content:center;
+        overflow: auto;
+        border-radius: 25px;
+        border: 4px solid #000;
+        box-shadow: 2px 4px 2px 2px #991cff;
+
+        }
+
+
+    .box2{
+        position: absolute;
+        top: 90px;
+        left: 10%;
+        height: 255px;
+        color:snow;
+        width: 300%;
+        background-color: slategrey;
+        text-align:center;
+        font-style: italic;
+        font-size: x-large;
+        border-radius: 25px;
+        border: 4px solid #000;
+        margin-left: 10px;
+        box-shadow: 2px 4px 2px 2px #991cff;
+    }
+
+
+    .box3{
+        position: absolute;
+        top: 390px;
+        left: 10%;
+        height:290px;
+        color:ghostwhite;
+        width: 300%;
+        background-color:steelblue;
+        text-align:center;
+        font-style:italic;
+        font-size: x-large;
+        border-radius: 25px;
+        border: 4px solid black;
+        margin-left: 10px;
+        box-shadow: 2px 4px 2px 2px #991cff;
+    }
+
+
+    .box4{
+        position: absolute;
+        top: 90px;
+        left: 350%;
+        height: 270px;
+        color:floralwhite;
+        width: 300%;
+        background-color:darkturquoise;
+        text-align:center;
+        font-style:italic;
+        font-size: x-large;
+        border-radius: 25px;
+        border: 4px solid #000;
+        margin-left: 10px;
+        box-shadow: 2px 4px 2px 2px #991cff;
+        overflow-y: auto;
+    }
+
+    .box5{
+        position: absolute;
+        top: 420px;
+        left: 350%;
+        height: 225px;
+        color:aliceblue;
+        width: 300%;
+        background-color: #3498DB;
+        text-align:center;
+        font-style:italic;
+        font-size: x-large;
+        border-radius: 25px;
+        border: 4px solid #000;
+        margin-left: 10px;
+        box-shadow: 2px 4px 2px 2px #991cff;
+        overflow-y: auto;
+    }
+
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: absolute;
+  left: 1%;
+  top:7%;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow-y:auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+body {
+              background-color: whitesmoke;
+              }
+
+
+.button {
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background: darkcyan;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+  position:relative;
+}
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: red;}
+.button3 {background-color: blue;}
+</style>
+<body>
+
+
+
+   
+</style>
+</head>
+<body>
+        <div class="box">
+        <h1>Kubernetes web app</h1>
+    </div>
+        <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Actions</button>
+              <div id="myDropdown" class="dropdown-content">
+                <a onclick="klapods()">List all pods</a>
+                <a onclick="kladep()">List all deployments</a>
+                <a onclick="klar()">List all resources</a>
+                <a onclick="klasvc()">List services</a>
+                <a onclick="kdap()">Delete all pods</a>
+                <a onclick="kdadep()">Delete all deployments</a>
+                <a onclick="kdasvc()">Delete all services</a>
+                <a onclick="kdar()">Delete all resources</a>
+                <a onclick="dr10()">Stop the firewall</a>
+                <a onclick="dr11()">Turn off SELinux</a>
+    </div>
+
+
+
+            <script>
+                /* When the user clicks on the button, 
+                toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                  document.getElementById("myDropdown").classList.toggle("show");
+                }
+                
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function(event) {
+                  if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                      var openDropdown = dropdowns[i];
+                      if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                      }
+                    }
+                  }
+                }
+                </script>
+
+        <div class="box1">
+            <h1>Output
+            </h1>
+            <pre>
+                <div id ="d1">Here you have the output</div>
+            </pre>
+        </div>  
+        
+        <div class="box2">
+            <h4> Launch Pod/Deployment </h4>
+        <input type="search" id="lp"  placeholder="Enter the pod/deployment name" style="width: 80%; height: 12%; margin-bottom: 15px;">
+        <br>
+        <input type="search" id="lpi" placeholder="Enter the Image" style="width: 80%; height: 12%; margin-bottom: 15px;">
+        </br>
+<button onclick= "klaunchp()" class="button button1">Create pod</button>
+<button onclick= "klaunchdep()" class="button button2">Create deployment</button>
+</div>
+
+        <div class="box3">
+            <h4> Delete Pod/Deployment/Service </h4>
+            <input type="search" id="dp"  placeholder="Enter the deployment/pod/SVC name" style="width: 80%; height: 15%; margin-bottom: 15px;">
+            <button onclick= "kdeletep()" class="button button1">Delete pod</button>
+            <button onclick= "kdeletedep()" class="button button2">Delete deployment</button>
+            <button onclick="kdeletesvc()" class="button button3">Delete service</button>
+            </div>
+
+        <div class="box4">
+            <h4> Expose Pod/Deployment </h4>
+        <input type="search" id="ep"  placeholder="Enter the deployment/pod name" style="width: 80%; height: 12%; margin-bottom: 15px;">
+        <input type="search" id="epport"  placeholder="Enter the port number" style="width: 80%; height: 12%; margin-bottom: 15px;">
+        <button onclick= "kexposep()" class="button button1">Expose pod</button>
+        <button onclick="kexposedep()" class="button button2">Expose deployment</button>
+        </div>
+
+        <div class="box5">
+            <h4> Scale Deployment </h4>
+        <input type="search" id="sp"  placeholder="Enter the deployment name" style="width: 80%; height: 15%; margin-bottom: 15px;">
+        <input type="search" id="spreplicas"  placeholder="Enter the number of replicas" style="width: 80%; height: 15%; margin-bottom: 15px;">
+        <button onclick= "kscaledep()" class="button button1">Scale deployment</button>
+        </div>
+    
+    
+   
+          <script>
+
+
+            function klaunchp() {
+                    var i = document.getElementById("lp").value
+                    var p = document.getElementById("lpi").value
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl run " + i + " --image=" + p,true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                        document.getElementById("lp").value = "";
+                        document.getElementById("lpi").value = "";
+                    }
+                         }
+
+
+            function klaunchdep() {
+                    var i = document.getElementById("lp").value
+                    var p = document.getElementById("lpi").value
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl create deployment " + i + " --image=" + p,true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                        document.getElementById("lp").value = "";
+                        document.getElementById("lpi").value = "";
+                    }
+                         }
+
+            function kdeletep() {
+                    var r = prompt("Please enter \"delete pod\" to delete deployment");
+                    if (r == "delete pod") {
+                      var i = document.getElementById("dp").value
+                      var xhr = new XMLHttpRequest();
+                      xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete pod " + i,true);
+                      xhr.send();
+                      xhr.onload = function()    {
+                          var output = xhr.responseText;
+                          
+                          document.getElementById("d1").innerHTML = output;
+                          document.getElementById("dp").value = "";
+                      }
+                          }
+                    else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+
+            function kdeletedep() {
+                    var r = prompt("Please enter \"delete deployment\" to delete deployment");
+                    if (r == "delete deployment") {
+                      var i = document.getElementById("dp").value
+                      var xhr = new XMLHttpRequest();
+                      xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete deployment " + i,true);
+                      xhr.send();
+                      xhr.onload = function()    {
+                          var output = xhr.responseText;
+                          
+                          document.getElementById("d1").innerHTML = output;
+                          document.getElementById("dp").value = "";
+                      }
+                          }
+                    else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+
+
+            function kdeletesvc() {
+                    var r = prompt("Please enter \"delete Service\" to delete service");
+                    if (r == "delete service") {
+                      var i = document.getElementById("dp").value
+                      var xhr = new XMLHttpRequest();
+                      xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete svc " + i,true);
+                      xhr.send();
+                      xhr.onload = function()    {
+                          var output = xhr.responseText;
+                          
+                          document.getElementById("d1").innerHTML = output;
+                          document.getElementById("dp").value = "";
+                      }
+                          }
+                    else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+
+
+            function kexposep() {
+                    var i = document.getElementById("ep").value
+                    var p = document.getElementById("epport").value
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl expose pod " + i + " --port=" +p+ " --type=NodePort",true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                        document.getElementById("ep").value = "";
+                        document.getElementById("epport").value = "";
+                    }
+                         }
+
+
+              function kexposedep() {
+                    var i = document.getElementById("ep").value
+                    var p = document.getElementById("epport").value
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl expose deployment " + i + " --port=" +p+ " --type=NodePort",true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                        document.getElementById("ep").value = "";
+                        document.getElementById("epport").value = "";
+                    }
+                         }
+
+              function kscaledep() {
+                    var i = document.getElementById("sp").value
+                    var p = document.getElementById("spreplicas").value
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl scale deployment " + i + " --replicas=" +p,true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                        document.getElementById("sp").value = "";
+                        document.getElementById("spreplicas").value = "";
+                    }
+                         }
+
+
+
+              function klapods() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl get pods",true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                    }
+                         }
+
+              function kladep() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl get deployment",true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                    }
+                         }
+
+              function klar() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl get all",true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                    }
+                         }
+
+              function klasvc() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl get svc",true);
+                    xhr.send();
+                    xhr.onload = function()    {
+                        var output = xhr.responseText;
+                        
+                        document.getElementById("d1").innerHTML = output;
+                    }
+                         }
+
+
+              function kdar() {
+                var r = prompt("Please enter \"delete all\" to delete all resources");
+                      if (r == "delete all") {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete all --all",true);
+                        xhr.send();
+                        xhr.onload = function()    {
+                              var output = xhr.responseText;
+                              document.getElementById("d1").innerHTML = output
+                            } 
+                          }
+                      else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+
+
+              function kdap() {
+                var r = prompt("Please enter \"delete all pods\" to delete all pods");
+                      if (r == "delete all pods") {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete pods --all",true);
+                        xhr.send();
+                        xhr.onload = function()    {
+                              var output = xhr.responseText;
+                              document.getElementById("d1").innerHTML = output
+                            } 
+                          }
+                      else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+
+
+              function kdadep() {
+                var r = prompt("Please enter \"delete all deployments\" to delete all pods");
+                      if (r == "delete all deployments") {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete deployment --all",true);
+                        xhr.send();
+                        xhr.onload = function()    {
+                              var output = xhr.responseText;
+                              document.getElementById("d1").innerHTML = output
+                            } 
+                          }
+                      else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+        
+                  function kdasvc() {
+                var r = prompt("Please enter \"delete all services\" to delete all services");
+                      if (r == "delete all services") {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "kubectl delete svc --all",true);
+                        xhr.send();
+                        xhr.onload = function()    {
+                              var output = xhr.responseText;
+                              document.getElementById("d1").innerHTML = output
+                            } 
+                          }
+                      else {
+                        var output = "Cancelled deletion";
+                        document.getElementById("d1").innerHTML = output
+                      }
+                    }
+
+                    function dr10() {
+                      var xhr = new XMLHttpRequest();
+                          xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "systemctl stop firewalld",true);
+                          xhr.send();
+                          xhr.onload = function()    {
+                              var output = xhr.responseText;
+                              
+                              document.getElementById("d1").innerHTML = output;
+                          }
+                              }
+  
+            function dr11() {
+              var xhr = new XMLHttpRequest();
+                          xhr.open("GET", "http://192.168.56.109/cgi-bin/mainapp.py?x=" + "setenforce 0",true);
+                          xhr.send();
+                          xhr.onload = function()    {
+                              var output = xhr.responseText;
+                              
+                              document.getElementById("d1").innerHTML = output;
+                          }
+                        }
+
+            </script>
+                      
+
+
+
+</body>
+</html>
